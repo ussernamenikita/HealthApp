@@ -8,7 +8,7 @@ import android.support.v4.app.Fragment
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import ru.etu.parkinsonlibrary.coordinate.Callback
+import ru.etu.parkinsonlibrary.coordinate.RotationCallback
 import ru.etu.parkinsonlibrary.coordinate.LocationPermissionRequer
 import ru.etu.parkinsonlibrary.coordinate.LocationProvider
 import ru.etu.parkinsonlibrary.database.*
@@ -66,9 +66,9 @@ class DependencyProducer(private val application: Application) {
 
     fun getLocatinProvider():LocationProvider = LocationProvider(1000,application)
 
-    fun getLocationPermissionRequer(activity: Activity,callback:Callback):LocationPermissionRequer = LocationPermissionRequer(activity,callback)
+    fun getLocationPermissionRequer(activity: Activity, rotationCallback:RotationCallback):LocationPermissionRequer = LocationPermissionRequer(activity,rotationCallback)
 
-    fun getLocationPermissionRequer(fragment: Fragment,callback:Callback):LocationPermissionRequer = LocationPermissionRequer(fragment,callback)
+    fun getLocationPermissionRequer(fragment: Fragment, rotationCallback:RotationCallback):LocationPermissionRequer = LocationPermissionRequer(fragment,rotationCallback)
 
 
     fun getRotationDatabaseConsumer(): DatabaseRotationConsumer = DatabaseRotationConsumer(getDatabase().getOrientatoinDao(), backGroundScheduler)

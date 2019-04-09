@@ -20,8 +20,6 @@ class TypingErrorTextListener(var consumer: TypingErrorConsumer? = null) : TextW
 
     override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
 
-    private var lastText: Editable? = null
-
     private var lastSize: Int = 0
 
     private var lastTimeStamp: Long? = null
@@ -32,7 +30,6 @@ class TypingErrorTextListener(var consumer: TypingErrorConsumer? = null) : TextW
         consumer?.onEvent(currentTimeStamp, changes, currentTimeStamp - (lastTimeStamp
                 ?: currentTimeStamp))
         this.lastTimeStamp = currentTimeStamp
-        this.lastText = s
         this.lastSize = getSize(s)
     }
 
@@ -42,11 +39,8 @@ class TypingErrorTextListener(var consumer: TypingErrorConsumer? = null) : TextW
 
 
     val eraseSymbol: CharSequence = "<-"
-
     val eraseFewSymbols: CharSequence = "FE"
-
     val typeFewSymbol: CharSequence = "FT"
-
     val emptySymbol: CharSequence = "EM"
 
     interface TypingErrorConsumer {

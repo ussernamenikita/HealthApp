@@ -7,10 +7,10 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 
 class LocationPermissionRequer
-private constructor(private val fragment: Fragment?, private val activity: Activity?, private val callback: Callback) {
+private constructor(private val fragment: Fragment?, private val activity: Activity?, private val rotationCallback: RotationCallback) {
 
-    constructor(fragment: Fragment, callback: Callback) : this(fragment, null, callback)
-    constructor(activity: Activity, callback: Callback) : this(null, activity, callback)
+    constructor(fragment: Fragment, rotationCallback: RotationCallback) : this(fragment, null, rotationCallback)
+    constructor(activity: Activity, rotationCallback: RotationCallback) : this(null, activity, rotationCallback)
 
 
     private val locationPermission = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -19,9 +19,9 @@ private constructor(private val fragment: Fragment?, private val activity: Activ
     fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
             REQUEST_LOCATION_PERMISSION -> if (grantResults.isNotEmpty() && allGranted(grantResults)) {
-                callback.onGranted()
+                rotationCallback.onGranted()
             } else {
-                callback.onDenied()
+                rotationCallback.onDenied()
             }
         }
     }
@@ -37,7 +37,7 @@ private constructor(private val fragment: Fragment?, private val activity: Activ
 
     fun requestPermissions() {
         if (itHaveAllPermissions()) {
-            callback.onGranted()
+            rotationCallback.onGranted()
         } else {
             if (activity != null) {
                 ActivityCompat.requestPermissions(activity, locationPermission, REQUEST_LOCATION_PERMISSION)
@@ -63,7 +63,7 @@ private constructor(private val fragment: Fragment?, private val activity: Activ
 
 }
 
-interface Callback {
+interface RotationCallback {
     fun onGranted()
     fun onDenied()
 }

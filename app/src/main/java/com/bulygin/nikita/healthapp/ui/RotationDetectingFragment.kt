@@ -16,14 +16,13 @@ import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import ru.etu.parkinsonlibrary.coordinate.Callback
+import ru.etu.parkinsonlibrary.coordinate.RotationCallback
 import ru.etu.parkinsonlibrary.coordinate.LocationPermissionRequer
-import ru.etu.parkinsonlibrary.coordinate.LocationProvider
 import ru.etu.parkinsonlibrary.database.DatabaseHelper
 import ru.etu.parkinsonlibrary.di.DependencyProducer
 import ru.etu.parkinsonlibrary.rotation.RotationDetectorService
 
-class RotationDetectingFragment : Fragment(), Callback {
+class RotationDetectingFragment : Fragment(), RotationCallback {
 
     override fun onGranted() {
         val intent = Intent(activity, RotationDetectorService::class.java)
@@ -40,7 +39,7 @@ class RotationDetectingFragment : Fragment(), Callback {
     lateinit var zValueTv: TextView
     lateinit var mContext: Context
     lateinit var uiScheduler: Scheduler
-    lateinit var locationPermissionRequer: LocationPermissionRequer
+    lateinit var locationPermissionRequire: LocationPermissionRequer
 
     private lateinit var databaseHelper: DatabaseHelper
 
@@ -51,8 +50,8 @@ class RotationDetectingFragment : Fragment(), Callback {
         uiScheduler = AndroidSchedulers.mainThread()
         val producer = DependencyProducer(activity.application)
         this.databaseHelper = producer.getDatabaseHelper()
-        locationPermissionRequer = producer.getLocationPermissionRequer(this, this)
-        locationPermissionRequer.requestPermissions()
+        locationPermissionRequire = producer.getLocationPermissionRequer(this, this)
+        locationPermissionRequire.requestPermissions()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,6 +98,6 @@ class RotationDetectingFragment : Fragment(), Callback {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        this.locationPermissionRequer.onRequestPermissionsResult(requestCode, arrayOf(*permissions), grantResults)
+        this.locationPermissionRequire.onRequestPermissionsResult(requestCode, arrayOf(*permissions), grantResults)
     }
 }
