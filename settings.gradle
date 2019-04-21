@@ -1,1 +1,1 @@
-include ':app', ':parkinsonlibrary'
+include ':app', ':parkinsonlibrary', ':firebaseauth'

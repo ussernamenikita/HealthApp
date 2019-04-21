@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'com.google.gms.google-services'
+
 android {
     compileSdkVersion 28
     buildToolsVersion "28.0.3"
@@ -42,6 +44,7 @@ dependencies {
     implementation 'io.nlopez.smartlocation:library:3.3.3'
     implementation 'io.nlopez.smartlocation:rx:3.3.3'
     implementation project(":parkinsonlibrary")
+    implementation project(":firebaseauth")
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
