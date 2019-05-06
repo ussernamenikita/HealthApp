@@ -9,6 +9,14 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('/home/nikita/Android/Keystore/HealthAppKeys.jks')
+            storePassword '930205atk'
+            keyAlias = 'Test'
+            keyPassword '930205atk'
+        }
+    }
     compileSdkVersion 28
     buildToolsVersion "28.0.3"
     defaultConfig {

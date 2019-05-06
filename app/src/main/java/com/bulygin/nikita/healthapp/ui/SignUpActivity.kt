@@ -4,7 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseUser
+import com.healthapp.firebaseauth.AuthFragment
 import com.healthapp.firebaseauth.FirebaseAuth
+
+private const val AUTH_TAG = "_AUTH_"
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -13,7 +17,9 @@ class SignUpActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             val currentUser = FirebaseAuth.getCurrentUser()
             if (currentUser == null) {
-                FirebaseAuth.signIn(this)
+                supportFragmentManager.beginTransaction().add(AuthFragment(), AUTH_TAG).commit()
+            } else {
+                showSignInSuccess()
             }
         }
     }
@@ -21,7 +27,7 @@ class SignUpActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        val user = FirebaseAuth.onActivityResult(requestCode, resultCode, data)
+        val user = FirebaseAuth.getCurrentUser()
         if (user == null) {
             showSignInFailed()
         } else {
