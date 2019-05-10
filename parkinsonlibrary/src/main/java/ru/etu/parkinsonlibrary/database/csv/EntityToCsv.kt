@@ -73,9 +73,9 @@ class RotationEntityToCsv(private val dao: OrientationDao,
 
     private fun toString(item: OrientationEntity) = "${item.id}," +
             "${item.timestamp}," +
-            "${item.x}," +
-            "${item.y}," +
-            "${item.z}," +
+            "${item.pitch}," +
+            "${item.azimut}," +
+            "${item.roll}," +
             "${item.latitude}"+
             "${item.longitude}"+
             "${item.altitude}"

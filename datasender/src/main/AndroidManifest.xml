@@ -1,2 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.healthapp.datasender" />
+    package="com.healthapp.datasender" >
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application>
+        <activity android:name=".DataSenderAuthActivity" />
+    </application>
+</manifest>

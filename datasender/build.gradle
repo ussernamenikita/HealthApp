@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 28
@@ -24,10 +26,23 @@ android {
 }
 
 dependencies {
+    def work_version = "2.0.1"
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation project(':firebaseauth')
+    implementation project(':parkinsonlibrary')
 
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    // (Java only)
+    implementation "androidx.work:work-runtime:$work_version"
+
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+
+    implementation "com.android.support:support-compat:28.0.0"
+
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+
+}
+
+repositories {
+    mavenCentral()
 }

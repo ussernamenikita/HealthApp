@@ -53,6 +53,7 @@ dependencies {
     implementation 'io.nlopez.smartlocation:rx:3.3.3'
     implementation project(":parkinsonlibrary")
     implementation project(":firebaseauth")
+    implementation project(":datasender")
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

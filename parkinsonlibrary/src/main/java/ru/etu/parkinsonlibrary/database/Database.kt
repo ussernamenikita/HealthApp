@@ -8,11 +8,11 @@ import io.reactivex.Single
  */
 @Database(entities = [MissClickEntity::class,
     TypingErrorEntity::class,
-OrientationEntity::class], version = 2, exportSchema = false)
+    OrientationEntity::class], version = 2, exportSchema = false)
 abstract class ParkinsonLibraryDatabase : RoomDatabase() {
     abstract fun missClickDao(): MissClickDao
     abstract fun typingErrorDao(): TypingErrorsDao
-    abstract fun getOrientatoinDao():OrientationDao
+    abstract fun getOrientatoinDao(): OrientationDao
 
 }
 
@@ -21,13 +21,18 @@ interface BaseDao<T> {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(event: T)
+
+    fun get(limit: Int): List<T>
+
+    @Delete
+    fun delete(items: List<T>)
 }
 
 @Entity
 data class MissClickEntity(@PrimaryKey(autoGenerate = true) val id: Long? = 0L,
                            @ColumnInfo(name = "timestamp") var timestamp: Long,
                            @ColumnInfo(name = "distance") var distance: Double,
-                           @ColumnInfo(name = "isMissClick") var isMissClick:Boolean)
+                           @ColumnInfo(name = "isMissClick") var isMissClick: Boolean)
 
 @Dao
 interface MissClickDao : BaseDao<MissClickEntity> {
@@ -42,6 +47,8 @@ interface MissClickDao : BaseDao<MissClickEntity> {
     @Query("SELECT * FROM MissClickEntity")
     fun getAllAsSingle(): Single<List<MissClickEntity>>
 
+    @Query("SELECT * FROM MissClickEntity LIMIT :limit")
+    override fun get(limit: Int): List<MissClickEntity>
 
 }
 
@@ -62,14 +69,17 @@ interface TypingErrorsDao : BaseDao<TypingErrorEntity> {
 
     @Query("SELECT * FROM TypingErrorEntity")
     fun getAllAsSingle(): Single<List<TypingErrorEntity>>
+
+    @Query("SELECT * FROM TypingErrorEntity LIMIT :limit")
+    override fun get(limit: Int): List<TypingErrorEntity>
 }
 
 @Entity
 data class OrientationEntity(@PrimaryKey(autoGenerate = true) val id: Long? = null,
                              @ColumnInfo(name = "timestamp") val timestamp: Long,
-                             @ColumnInfo(name = "pitch") val x: Int,
-                             @ColumnInfo(name = "azimut") val y: Int,
-                             @ColumnInfo(name = "roll") val z: Int,
+                             @ColumnInfo(name = "pitch") val pitch: Int,
+                             @ColumnInfo(name = "azimut") val azimut: Int,
+                             @ColumnInfo(name = "roll") val roll: Int,
                              @ColumnInfo(name = "latitude") val latitude: Double?,
                              @ColumnInfo(name = "longitude") val longitude: Double?,
                              @ColumnInfo(name = "altitude") val altitude: Double?)
@@ -85,5 +95,8 @@ interface OrientationDao : BaseDao<OrientationEntity> {
 
     @Query("SELECT * FROM OrientationEntity")
     fun getAllSingle(): Single<List<OrientationEntity>>
+
+    @Query("SELECT * FROM OrientationEntity LIMIT :limit")
+    override fun get(limit: Int): List<OrientationEntity>
 }
 
