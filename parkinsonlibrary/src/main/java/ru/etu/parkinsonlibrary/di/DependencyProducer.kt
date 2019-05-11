@@ -2,9 +2,9 @@ package ru.etu.parkinsonlibrary.di
 
 import android.app.Activity
 import android.app.Application
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import android.content.Context
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -68,7 +68,7 @@ class DependencyProducer(private val application: Application) {
 
     fun getLocationPermissionRequer(activity: Activity, rotationCallback:RotationCallback):LocationPermissionRequer = LocationPermissionRequer(activity,rotationCallback)
 
-    fun getLocationPermissionRequer(fragment: Fragment, rotationCallback:RotationCallback):LocationPermissionRequer = LocationPermissionRequer(fragment,rotationCallback)
+    fun getLocationPermissionRequer(fragment: androidx.fragment.app.Fragment, rotationCallback:RotationCallback):LocationPermissionRequer = LocationPermissionRequer(fragment,rotationCallback)
 
 
     fun getRotationDatabaseConsumer(): DatabaseRotationConsumer = DatabaseRotationConsumer(getDatabase().getOrientatoinDao(), backGroundScheduler)

@@ -1,14 +1,10 @@
 package com.bulygin.nikita.healthapp.ui
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+class HealthPagerAdapter(fragmentManager: androidx.fragment.app.FragmentManager,
+                         private val fragments: Array<androidx.fragment.app.Fragment>,
+                         private val titles: Array<String>) : androidx.fragment.app.FragmentPagerAdapter(fragmentManager) {
 
-class HealthPagerAdapter(fragmentManager: FragmentManager,
-                         private val fragments:Array<Fragment>,
-                         private val titles:Array<String>) : FragmentPagerAdapter(fragmentManager) {
-
-    override fun getItem(index: Int): Fragment {
+    override fun getItem(index: Int): androidx.fragment.app.Fragment {
         return fragments[index]
     }
 

@@ -2,7 +2,7 @@ package com.bulygin.nikita.healthapp.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseUser
 import com.healthapp.datasender.HealthAppDataSender
@@ -15,16 +15,8 @@ class SignUpActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (savedInstanceState == null) {
-            val currentUser = FirebaseAuth.getCurrentUser()
-            if (currentUser == null) {
-                //Запуст отправки данных на сервер
-                HealthAppDataSender.schedule()
-                supportFragmentManager.beginTransaction().add(AuthFragment(), AUTH_TAG).commit()
-            } else {
-                showSignInSuccess()
-            }
-        }
+        HealthAppDataSender.schedule()
+        goToMainActivity()
     }
 
 
@@ -43,13 +35,17 @@ class SignUpActivity : AppCompatActivity() {
         user.getIdToken(true).addOnCompleteListener {
             if (it.isSuccessful) {
                 println(it.result!!.token)
-                val intent = Intent(this, MainActivity::class.java)
-                this.startActivity(intent)
+                goToMainActivity()
             } else {
                 showSignInFailed()
             }
         }
 
+    }
+
+    private fun goToMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        this.startActivity(intent)
     }
 
     private fun showSignInFailed() {

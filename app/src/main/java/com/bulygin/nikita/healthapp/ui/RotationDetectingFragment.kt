@@ -3,7 +3,7 @@ package com.bulygin.nikita.healthapp.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +22,7 @@ import ru.etu.parkinsonlibrary.database.DatabaseHelper
 import ru.etu.parkinsonlibrary.di.DependencyProducer
 import ru.etu.parkinsonlibrary.rotation.RotationDetectorService
 
-class RotationDetectingFragment : Fragment(), RotationCallback {
+class RotationDetectingFragment : androidx.fragment.app.Fragment(), RotationCallback {
 
     override fun onGranted() {
         val intent = Intent(activity, RotationDetectorService::class.java)
@@ -34,6 +34,8 @@ class RotationDetectingFragment : Fragment(), RotationCallback {
         Toast.makeText(activity, "Can't use gps without perrmissions", LENGTH_LONG).show()
     }
 
+    private var rotationSubscription: Disposable? = null
+    private lateinit var producer: DependencyProducer
     lateinit var xValueTv: TextView
     lateinit var yValueTv: TextView
     lateinit var zValueTv: TextView
@@ -48,7 +50,7 @@ class RotationDetectingFragment : Fragment(), RotationCallback {
         val activity = (activity as MainActivity)
         activity.startService(Intent(activity, RotationDetectorService::class.java))
         uiScheduler = AndroidSchedulers.mainThread()
-        val producer = DependencyProducer(activity.application)
+        this.producer = DependencyProducer(activity.application)
         this.databaseHelper = producer.getDatabaseHelper()
         locationPermissionRequire = producer.getLocationPermissionRequer(this, this)
         locationPermissionRequire.requestPermissions()
@@ -57,6 +59,13 @@ class RotationDetectingFragment : Fragment(), RotationCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         inject()
+        if(context != null){
+            rotationSubscription = producer.getRotationDetector(context!!).getOrientation().subscribe(
+                    {
+                        updateValues(it.roll.toDouble(),it.azimut.toDouble(),it.pitch.toDouble())
+                    },
+                    {})
+        }
 
     }
 
@@ -71,7 +80,7 @@ class RotationDetectingFragment : Fragment(), RotationCallback {
             if (subscription == null || subscription!!.isDisposed) {
                 subscription = databaseHelper.getRotationAsCsv(false).subscribeOn(Schedulers.computation()).observeOn(uiScheduler).subscribe({
                     for (item in it) {
-                        println(item)
+                        print(item)
                     }
                 }, {
                     it.printStackTrace()
@@ -99,5 +108,10 @@ class RotationDetectingFragment : Fragment(), RotationCallback {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         this.locationPermissionRequire.onRequestPermissionsResult(requestCode, arrayOf(*permissions), grantResults)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        rotationSubscription?.dispose()
     }
 }

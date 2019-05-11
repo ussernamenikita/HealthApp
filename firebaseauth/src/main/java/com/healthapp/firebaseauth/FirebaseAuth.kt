@@ -1,7 +1,7 @@
 package com.healthapp.firebaseauth
 
 import android.app.Activity
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -12,7 +12,7 @@ const val RC_SIGN_IN = 121
 object FirebaseAuth {
 
 
-    fun signIn(fromFragment: Fragment) {
+    fun signIn(fromFragment: androidx.fragment.app.Fragment) {
         val providers = arrayListOf(AuthUI.IdpConfig.GoogleBuilder().build())
         fromFragment.startActivityForResult(AuthUI.getInstance()
                 .createSignInIntentBuilder()

@@ -20,17 +20,17 @@ class RotationDetector(private val context: Context,
     private val sensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
     private val rotationSensor: Sensor? = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
 
-    fun getOrientation(): Observable<Array<Float>> {
+    fun getOrientation(): Observable<Rotation> {
         checkRotationSensor()
         var sensorEventListener: SensorEventListener? = null
-        val sensorObs = Observable.create<Array<Float>> { emitter ->
+        val sensorObs = Observable.create<Rotation> { emitter ->
             sensorEventListener = object : SensorEventListener {
                 override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
 
                 override fun onSensorChanged(event: SensorEvent?) {
                     if (event != null && !emitter.isDisposed) {
                         val d = getDataFromSensors(event.values)
-                        d?.let { emitter.onNext(d) }
+                        emitter.onNext(d)
                     }
                 }
 
@@ -45,7 +45,7 @@ class RotationDetector(private val context: Context,
         }.throttleLast(debounceParam, TimeUnit.MILLISECONDS)
     }
 
-    private fun getDataFromSensors(rotationVector: FloatArray?): Array<Float>? {
+    private fun getDataFromSensors(rotationVector: FloatArray?): Rotation {
         val rotationMatrix = FloatArray(9)
         SensorManager.getRotationMatrixFromVector(rotationMatrix, rotationVector)
 
@@ -64,7 +64,7 @@ class RotationDetector(private val context: Context,
         val pitch = orientation[1] * 180.0 / Math.PI
         val roll = orientation[2] * 180.0 / Math.PI
         val azimut = orientation[0] * 180.0 / Math.PI
-        return arrayOf(pitch.toFloat(), azimut.toFloat(), roll.toFloat())
+        return Rotation(pitch.toFloat(), azimut.toFloat(), roll.toFloat())
     }
 
 
@@ -74,5 +74,9 @@ class RotationDetector(private val context: Context,
             Toast.makeText(context, context.getString(R.string.no_sensor_detected_for_rotation_detection), Toast.LENGTH_LONG).show()
         }
     }
+
+    class Rotation(val pitch:Float,
+                   val azimut:Float,
+                   val roll:Float)
 
 }

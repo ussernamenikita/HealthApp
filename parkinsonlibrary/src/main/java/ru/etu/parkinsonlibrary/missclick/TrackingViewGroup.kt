@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.*
 import android.os.Build
 import android.os.Handler
-import android.support.annotation.RequiresApi
+import androidx.annotation.RequiresApi
 import android.util.AttributeSet
 import android.util.DisplayMetrics
 import android.view.MotionEvent

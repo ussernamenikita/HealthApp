@@ -3,6 +3,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application>
-        <activity android:name=".DataSenderAuthActivity" />
+        <activity android:name=".DataSenderAuthActivity"
+            android:theme="@style/Theme.Transparent"/>
     </application>
 </manifest>

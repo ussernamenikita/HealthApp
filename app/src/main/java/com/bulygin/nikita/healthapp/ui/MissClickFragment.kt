@@ -1,7 +1,7 @@
 package com.bulygin.nikita.healthapp.ui
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +20,7 @@ import ru.etu.parkinsonlibrary.missclick.CloseTouchEvent
 import ru.etu.parkinsonlibrary.missclick.MissClickEventsConsumer
 import ru.etu.parkinsonlibrary.missclick.TrackingViewGroup
 
-class MissClickFragment : Fragment(), MissClickEventsConsumer, SeekBar.OnSeekBarChangeListener {
+class MissClickFragment : androidx.fragment.app.Fragment(), MissClickEventsConsumer, SeekBar.OnSeekBarChangeListener {
     override fun onStartTrackingTouch(seekBar: SeekBar?) {}
 
     override fun onStopTrackingTouch(seekBar: SeekBar?) {}

@@ -1,6 +1,6 @@
 package ru.etu.parkinsonlibrary.database
 
-import android.arch.persistence.room.*
+import androidx.room.*
 import io.reactivex.Single
 
 /**
@@ -82,7 +82,8 @@ data class OrientationEntity(@PrimaryKey(autoGenerate = true) val id: Long? = nu
                              @ColumnInfo(name = "roll") val roll: Int,
                              @ColumnInfo(name = "latitude") val latitude: Double?,
                              @ColumnInfo(name = "longitude") val longitude: Double?,
-                             @ColumnInfo(name = "altitude") val altitude: Double?)
+                             @ColumnInfo(name = "altitude") val altitude: Double?,
+                             @ColumnInfo(name = "speed") val speed : Double?)
 
 @Dao
 interface OrientationDao : BaseDao<OrientationEntity> {

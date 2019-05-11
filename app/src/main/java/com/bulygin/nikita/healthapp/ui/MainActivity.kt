@@ -1,9 +1,9 @@
 package com.bulygin.nikita.healthapp.ui
 
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.tabs.TabLayout
+import androidx.viewpager.widget.ViewPager
+import androidx.appcompat.app.AppCompatActivity
 import com.bulygin.nikita.healthapp.R
 import com.bulygin.nikita.healthapp.di.AppModule
 
@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         this.inject()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val viewPager = findViewById<ViewPager>(R.id.viewpager)
+        val viewPager = findViewById<androidx.viewpager.widget.ViewPager>(R.id.viewpager)
         viewPager.adapter = adapter
         val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
         tabLayout.setupWithViewPager(viewPager)

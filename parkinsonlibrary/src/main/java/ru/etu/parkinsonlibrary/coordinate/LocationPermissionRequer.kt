@@ -3,13 +3,13 @@ package ru.etu.parkinsonlibrary.coordinate
 import android.Manifest
 import android.app.Activity
 import android.content.pm.PackageManager
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.Fragment
+import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
 
 class LocationPermissionRequer
-private constructor(private val fragment: Fragment?, private val activity: Activity?, private val rotationCallback: RotationCallback) {
+private constructor(private val fragment: androidx.fragment.app.Fragment?, private val activity: Activity?, private val rotationCallback: RotationCallback) {
 
-    constructor(fragment: Fragment, rotationCallback: RotationCallback) : this(fragment, null, rotationCallback)
+    constructor(fragment: androidx.fragment.app.Fragment, rotationCallback: RotationCallback) : this(fragment, null, rotationCallback)
     constructor(activity: Activity, rotationCallback: RotationCallback) : this(null, activity, rotationCallback)
 
 

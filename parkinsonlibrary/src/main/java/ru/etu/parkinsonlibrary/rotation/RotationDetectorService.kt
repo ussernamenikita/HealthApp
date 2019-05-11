@@ -8,8 +8,8 @@ import android.content.Intent
 import android.location.Location
 import android.os.Build
 import android.os.IBinder
-import android.support.annotation.RequiresApi
-import android.support.v4.app.NotificationCompat
+import androidx.annotation.RequiresApi
+import androidx.core.app.NotificationCompat
 import io.reactivex.disposables.Disposable
 import ru.etu.parkinsonlibrary.coordinate.LocationConsumer
 import ru.etu.parkinsonlibrary.coordinate.LocationProvider
