@@ -1,10 +1,13 @@
 package ru.etu.parkinsonlibrary.di
 
+import android.app.Activity
 import android.app.Application
 import android.arch.persistence.room.Room
 import android.content.Context
+import android.content.Intent
 import android.support.v4.app.Fragment
 import ru.etu.parkinsonlibrary.coordinate.LocationPermissionRequer
+import ru.etu.parkinsonlibrary.coordinate.LocationPermissionsActivity
 import ru.etu.parkinsonlibrary.coordinate.LocationProvider
 import ru.etu.parkinsonlibrary.coordinate.RotationCallback
 import ru.etu.parkinsonlibrary.database.ParkinsonLibraryDatabase
@@ -12,9 +15,7 @@ import ru.etu.parkinsonlibrary.database.consumer.DatabaseMissClickConsumer
 import ru.etu.parkinsonlibrary.database.consumer.DatabaseRotationConsumer
 import ru.etu.parkinsonlibrary.database.consumer.DatabaseTypingErrorConsumer
 import ru.etu.parkinsonlibrary.rotation.RotationDetector
-import java.util.concurrent.Executors
-import java.util.concurrent.ThreadFactory
-import java.util.concurrent.atomic.AtomicInteger
+import ru.etu.parkinsonlibrary.rotation.RotationDetectorService
 
 /**
  * Объект который создает зависимости
@@ -48,25 +49,25 @@ class DependencyProducer(private val application: Application) {
         return RotationDetector(context, 1000)
     }
 
+    fun startMonitoringServiceIntent(activity: Activity) {
+        val intent = Intent(activity, RotationDetectorService::class.java)
+        val withLocation = getLocationPermissionRequer(activity, null).itHaveAllPermissions()
+        intent.putExtra(RotationDetectorService.LOCATION_PERMISSIONS_KEY, withLocation)
+        activity.startService(intent)
+    }
+
+    fun startRequestPermisionsActivity(activity: Activity) {
+        val intent = Intent(activity, LocationPermissionsActivity::class.java)
+        activity.startActivity(intent)
+    }
+
     fun getLocatinProvider(): LocationProvider = LocationProvider(1000, application)
 
-    fun getLocationPermissionRequer(fragment: Fragment, rotationCallback: RotationCallback): LocationPermissionRequer = LocationPermissionRequer(fragment, rotationCallback)
+    fun getLocationPermissionRequer(fragment: Fragment, rotationCallback: RotationCallback?): LocationPermissionRequer = LocationPermissionRequer(fragment, rotationCallback)
+    fun getLocationPermissionRequer(activity: Activity, rotationCallback: RotationCallback?): LocationPermissionRequer = LocationPermissionRequer(activity, rotationCallback)
 
 
     fun getRotationDatabaseConsumer(): DatabaseRotationConsumer = DatabaseRotationConsumer(getDatabase().getOrientatoinDao())
 
 
 }
-
-class NamedThreadFactory(private val mBaseName: String) : ThreadFactory {
-
-    private val mDefaultThreadFactory: ThreadFactory = Executors.defaultThreadFactory()
-    private val mCount = AtomicInteger(0)
-
-    override fun newThread(runnable: Runnable): Thread {
-        val thread = mDefaultThreadFactory.newThread(runnable)
-        thread.name = mBaseName + "-" + mCount.getAndIncrement()
-        return thread
-    }
-}
-
