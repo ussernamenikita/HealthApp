@@ -94,8 +94,8 @@ class NotificationManager(private val context: Context) {
     companion object {
         private val CHANNEL_ID = "Rotation"
         private val CHANNEL_NAME = "Rotation service chanel"
-        private val CHANNEL_DESCRIPTION = "Chanel for rotation service, if it's need to be configure like a foreground"
     }
+    private val CHANNEL_DESCRIPTION = context.resources.getString(R.string.channel_description)
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun getMainNotificationId(): String {
