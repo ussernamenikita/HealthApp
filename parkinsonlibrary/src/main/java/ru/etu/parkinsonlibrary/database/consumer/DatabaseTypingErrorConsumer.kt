@@ -1,6 +1,5 @@
 package ru.etu.parkinsonlibrary.database.consumer
 
-import io.reactivex.Scheduler
 import ru.etu.parkinsonlibrary.database.TypingErrorEntity
 import ru.etu.parkinsonlibrary.database.TypingErrorsDao
 import ru.etu.parkinsonlibrary.typingerror.TypingErrorTextListener
@@ -9,9 +8,8 @@ import ru.etu.parkinsonlibrary.typingerror.TypingErrorTextListener
  * Consumer для событий ошибок печати,
  * Записывает полученные события в базу данных.
  */
-class DatabaseTypingErrorConsumer(typeErrorDao: TypingErrorsDao,
-                                  backgroundScheduler: Scheduler) : TypingErrorTextListener.TypingErrorConsumer,
-        BaseConsumer<TypingErrorEntity>(typeErrorDao, backgroundScheduler) {
+class DatabaseTypingErrorConsumer(typeErrorDao: TypingErrorsDao) : TypingErrorTextListener.TypingErrorConsumer,
+        BaseConsumer<TypingErrorEntity>(typeErrorDao) {
 
 
     override fun onEvent(currentTimestamp: Long, changes: CharSequence, l: Long) {

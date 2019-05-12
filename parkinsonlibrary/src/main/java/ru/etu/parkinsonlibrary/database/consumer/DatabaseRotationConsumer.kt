@@ -1,18 +1,17 @@
 package ru.etu.parkinsonlibrary.database.consumer
 
 import android.location.Location
-import io.reactivex.Scheduler
 import ru.etu.parkinsonlibrary.coordinate.LocationConsumer
 import ru.etu.parkinsonlibrary.database.OrientationDao
 import ru.etu.parkinsonlibrary.database.OrientationEntity
+import ru.etu.parkinsonlibrary.rotation.RotationDetector
 import java.util.concurrent.atomic.AtomicReference
 
 /**
  * Consumer сохраняет данные о наклоне устройсва в базу данных, если они изменились
  */
-class DatabaseRotationConsumer(dao: OrientationDao,
-                               netScheduler: Scheduler) :
-        BaseConsumer<OrientationEntity>(dao, netScheduler), LocationConsumer {
+class DatabaseRotationConsumer(dao: OrientationDao) :
+        BaseConsumer<OrientationEntity>(dao), LocationConsumer {
 
     private val currentLocation = AtomicReference<Location>()
 
@@ -26,17 +25,18 @@ class DatabaseRotationConsumer(dao: OrientationDao,
 
     private var lastSavedLocation: Location? = null
 
-    fun onNewAngels(data: Array<Float>) {
-        this.currentOrientation = data.map { it.toInt() }
+    fun onNewAngels(data: RotationDetector.Rotation) {
+        this.currentOrientation = listOf(data.azimut.toInt(), data.pitch.toInt(), data.roll.toInt())
         val location = currentLocation.get()
         if (isEquals(currentOrientation, lastOrientation) || isEquals(lastSavedLocation, location)) {
             onNewItem(OrientationEntity(null, System.currentTimeMillis(),
-                    currentOrientation!![0],
-                    currentOrientation!![1],
-                    currentOrientation!![2],
+                    azimut = data.azimut.toInt(),
+                    pitch = data.pitch.toInt(),
+                    roll = data.roll.toInt(),
                     latitude = location?.latitude,
                     longitude = location?.longitude,
-                    altitude = location?.altitude))
+                    altitude = location?.altitude,
+                    speed = location?.speed?.toDouble()))
         }
         this.lastOrientation = currentOrientation
         this.lastSavedLocation = currentLocation.get()

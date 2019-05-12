@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">ParkinsonLibrary</string>
-    <string name="no_sensor_detected_for_rotation_detection">Ы</string>
+    <string name="no_sensor_detected_for_rotation_detection">Cannot find rotation sensors</string>
 </resources>

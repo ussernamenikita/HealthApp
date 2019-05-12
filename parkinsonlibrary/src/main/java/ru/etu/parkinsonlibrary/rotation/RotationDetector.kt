@@ -6,9 +6,7 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.widget.Toast
-import io.reactivex.Observable
 import ru.etu.parkinsonlibrary.R
-import java.util.concurrent.TimeUnit
 
 /**
  * Объект который работает с датчиком поворота
@@ -16,36 +14,33 @@ import java.util.concurrent.TimeUnit
 class RotationDetector(private val context: Context,
                        private val debounceParam: Long) {
 
-
+    private var sensorEventListener: SensorEventListener? = null
+    private var currentCallback: CoordinationCallback? = null
     private val sensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
     private val rotationSensor: Sensor? = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
 
-    fun getOrientation(): Observable<Array<Float>> {
+
+    fun getOrientation(callback: CoordinationCallback) {
+        this.currentCallback = callback
         checkRotationSensor()
-        var sensorEventListener: SensorEventListener? = null
-        val sensorObs = Observable.create<Array<Float>> { emitter ->
-            sensorEventListener = object : SensorEventListener {
-                override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
+        unregister()
+        this.sensorEventListener = object : SensorEventListener {
+            private var lastTimestamp = 0L
 
-                override fun onSensorChanged(event: SensorEvent?) {
-                    if (event != null && !emitter.isDisposed) {
-                        val d = getDataFromSensors(event.values)
-                        d?.let { emitter.onNext(d) }
-                    }
+            override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
+
+            override fun onSensorChanged(event: SensorEvent?) {
+                val currentTime = System.currentTimeMillis()
+                if (event != null && currentTime - lastTimestamp >= debounceParam) {
+                    currentCallback?.onNewAngles(getDataFromSensors(event.values))
                 }
-
+                lastTimestamp = currentTime
             }
-            sensorManager.registerListener(sensorEventListener, rotationSensor, 16000)
         }
-
-        return sensorObs.doOnDispose {
-            sensorEventListener?.let {
-                sensorManager.unregisterListener(sensorEventListener)
-            }
-        }.throttleLast(debounceParam, TimeUnit.MILLISECONDS)
+        sensorManager.registerListener(sensorEventListener, rotationSensor, 16000)
     }
 
-    private fun getDataFromSensors(rotationVector: FloatArray?): Array<Float>? {
+    private fun getDataFromSensors(rotationVector: FloatArray?): Rotation {
         val rotationMatrix = FloatArray(9)
         SensorManager.getRotationMatrixFromVector(rotationMatrix, rotationVector)
 
@@ -64,8 +59,15 @@ class RotationDetector(private val context: Context,
         val pitch = orientation[1] * 180.0 / Math.PI
         val roll = orientation[2] * 180.0 / Math.PI
         val azimut = orientation[0] * 180.0 / Math.PI
-        return arrayOf(pitch.toFloat(), azimut.toFloat(), roll.toFloat())
+        return Rotation(pitch.toFloat(), azimut.toFloat(), roll.toFloat())
     }
+
+    fun clear() {
+        unregister()
+        currentCallback = null
+    }
+
+    private fun unregister() = sensorEventListener.let { sensorManager.unregisterListener(it) }
 
 
     private fun checkRotationSensor() {
@@ -75,4 +77,13 @@ class RotationDetector(private val context: Context,
         }
     }
 
+    class Rotation(val pitch: Float,
+                   val azimut: Float,
+                   val roll: Float)
+
+
+}
+
+interface CoordinationCallback {
+    fun onNewAngles(rotation: RotationDetector.Rotation)
 }

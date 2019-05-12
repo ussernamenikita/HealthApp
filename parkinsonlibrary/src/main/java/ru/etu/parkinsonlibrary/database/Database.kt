@@ -1,7 +1,6 @@
 package ru.etu.parkinsonlibrary.database
 
 import android.arch.persistence.room.*
-import io.reactivex.Single
 
 /**
  * Конфигурация базы данных
@@ -43,10 +42,6 @@ interface MissClickDao : BaseDao<MissClickEntity> {
     @Query("SELECT * FROM MissClickEntity")
     fun getAll(): List<MissClickEntity>
 
-
-    @Query("SELECT * FROM MissClickEntity")
-    fun getAllAsSingle(): Single<List<MissClickEntity>>
-
     @Query("SELECT * FROM MissClickEntity LIMIT :limit")
     override fun get(limit: Int): List<MissClickEntity>
 
@@ -67,9 +62,6 @@ interface TypingErrorsDao : BaseDao<TypingErrorEntity> {
     @Query("SELECT * FROM TypingErrorEntity")
     fun getAll(): List<TypingErrorEntity>
 
-    @Query("SELECT * FROM TypingErrorEntity")
-    fun getAllAsSingle(): Single<List<TypingErrorEntity>>
-
     @Query("SELECT * FROM TypingErrorEntity LIMIT :limit")
     override fun get(limit: Int): List<TypingErrorEntity>
 }
@@ -82,7 +74,8 @@ data class OrientationEntity(@PrimaryKey(autoGenerate = true) val id: Long? = nu
                              @ColumnInfo(name = "roll") val roll: Int,
                              @ColumnInfo(name = "latitude") val latitude: Double?,
                              @ColumnInfo(name = "longitude") val longitude: Double?,
-                             @ColumnInfo(name = "altitude") val altitude: Double?)
+                             @ColumnInfo(name = "altitude") val altitude: Double?,
+                             @ColumnInfo(name = "speed") val speed: Double?)
 
 @Dao
 interface OrientationDao : BaseDao<OrientationEntity> {
@@ -92,9 +85,6 @@ interface OrientationDao : BaseDao<OrientationEntity> {
 
     @Query("SELECT * FROM OrientationEntity")
     fun getAll(): List<OrientationEntity>
-
-    @Query("SELECT * FROM OrientationEntity")
-    fun getAllSingle(): Single<List<OrientationEntity>>
 
     @Query("SELECT * FROM OrientationEntity LIMIT :limit")
     override fun get(limit: Int): List<OrientationEntity>

@@ -1,15 +1,16 @@
 package ru.etu.parkinsonlibrary.database.consumer
 
-import io.reactivex.Scheduler
-import io.reactivex.disposables.Disposable
+
 import ru.etu.parkinsonlibrary.database.BaseDao
 import java.util.concurrent.ConcurrentLinkedQueue
+import java.util.concurrent.Executors
+import java.util.concurrent.atomic.AtomicBoolean
 
-open class BaseConsumer<T>(private val dao: BaseDao<T>,
-                           private val backgroundScheduler: Scheduler) {
+open class BaseConsumer<T>(private val dao: BaseDao<T>) {
 
     private val container = ConcurrentLinkedQueue<T>()
-    private var lastScheduled: Disposable? = null
+    private val executor = Executors.newSingleThreadExecutor()
+    private val insertScheduled = AtomicBoolean(false)
 
     open fun onNewItem(newItem: T) {
         container.offer(newItem)
@@ -17,15 +18,17 @@ open class BaseConsumer<T>(private val dao: BaseDao<T>,
     }
 
     private fun startInsertIfNeed() {
-        if (lastScheduled == null || lastScheduled?.isDisposed!!) {
-            lastScheduled = backgroundScheduler.createWorker().schedule {
+        if (!insertScheduled.get()) {
+            insertScheduled.set(true)
+            executor.submit {
                 do {
                     val item = container.poll()
                     item?.let { dao.insert(item) }
                 } while (item != null)
+                insertScheduled.set(false)
             }
         }
     }
-
-
 }
+
+

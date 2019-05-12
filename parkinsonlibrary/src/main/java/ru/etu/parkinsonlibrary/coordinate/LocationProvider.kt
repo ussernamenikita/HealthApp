@@ -53,14 +53,14 @@ class LocationProvider constructor(intervalMs: Int, private val context: Context
     @SuppressLint("MissingPermission")
     fun startTrackingLocation(context: Context) {
         if (itHaveAllPermissions()) {
-                isTrackingLocation = true
-                fusedLocationClient.requestLocationUpdates(
-                        locationRequest,
-                        this, null).addOnCompleteListener { println("LOCATION COMPLETE") }
-                                    .addOnCanceledListener{ println("LOCATION CANCELED") }
-                                    .addOnFailureListener { println("LOCATION FAILURE") }
-                                    .addOnSuccessListener { println("LOCATION SUCCESS") }
-            }
+            isTrackingLocation = true
+            fusedLocationClient.requestLocationUpdates(
+                    locationRequest,
+                    this, null).addOnCompleteListener { println("LOCATION COMPLETE") }
+                    .addOnCanceledListener { println("LOCATION CANCELED") }
+                    .addOnFailureListener { println("LOCATION FAILURE") }
+                    .addOnSuccessListener { println("LOCATION SUCCESS") }
+        }
     }
 
     private fun itHaveAllPermissions(): Boolean {
