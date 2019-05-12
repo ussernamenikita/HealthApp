@@ -1,18 +1,18 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 28
 
 
     defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
 
@@ -26,18 +26,15 @@ android {
 }
 
 dependencies {
-    def work_version = "2.0.1"
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation project(':firebaseauth')
-    implementation project(':parkinsonlibrary')
+    compile project(':firebaseauth')
+    compile project(':parkinsonlibrary')
 
-    // (Java only)
-    implementation "androidx.work:work-runtime:$work_version"
+
+    implementation 'android.arch.work:work-runtime:1.0.1'
 
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-
-    implementation "com.android.support:support-compat:28.0.0"
 
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
 

@@ -9,6 +9,7 @@ import android.content.Intent
 import android.os.Build
 import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
+import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.google.android.gms.tasks.Tasks
@@ -20,20 +21,27 @@ import ru.etu.parkinsonlibrary.database.OrientationEntity
 import ru.etu.parkinsonlibrary.database.TypingErrorEntity
 import ru.etu.parkinsonlibrary.di.DependencyProducer
 
+
 const val CHUNK_SIZE = 2000
 const val ERROR_CODE_NOT_AUTHORIZED = 401
 const val ERROR_CODE_INTERNAL_SERVER_ERROR = 500
 const val AUTH_NOTIFICATION_ID = 1
 const val CHANNEL_NAME = "Authentication"
 
+
 class SendDataWorker(appContext: Context, params: WorkerParameters) :
         Worker(appContext, params) {
+
+    companion object {
+        const val LOG_TAG = "SendDataWorker"
+    }
 
     private val service = HealthAppDataSender.getApiService()
 
     private lateinit var authToken: String
 
     override fun doWork(): Result {
+        Log.d(LOG_TAG, "Try send data to server")
         try {
             this.authToken = getToken()
             val producer = DependencyProducer(applicationContext as Application)
@@ -43,10 +51,17 @@ class SendDataWorker(appContext: Context, params: WorkerParameters) :
             sendAll(db.getOrientatoinDao(), this::sendOrientationToServer)
         } catch (authException: UnauthorizedException) {
             showNotificationAboutAuthentication()
+            Log.d(LOG_TAG, "Send data to server failed with $authException")
             return Result.failure()
         } catch (serverError: ServerError) {
+            Log.d(LOG_TAG, "Send data to server failed with $serverError")
+            return Result.failure()
+        } catch (t: Throwable) {
+            Log.d(LOG_TAG, "Send data to server failed with $t")
+            t.printStackTrace()
             return Result.failure()
         }
+        Log.d(LOG_TAG, "Send data to server success")
         return Result.success()
     }
 
@@ -54,15 +69,14 @@ class SendDataWorker(appContext: Context, params: WorkerParameters) :
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             createChannel()
         }
-        val intent = Intent(applicationContext, DataSenderAuthActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        }
+        val intent = Intent(applicationContext, DataSenderAuthActivity::class.java)
         val pendingIntent: PendingIntent = PendingIntent.getActivity(applicationContext, 0, intent, 0)
 
         val builder = NotificationCompat.Builder(applicationContext, CHANNEL_NAME)
                 .setContentTitle(getString(R.string.auth_notification_title))
                 .setContentText(getString(R.string.auth_notification_content))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setSmallIcon(R.drawable.send_data_auth_notification_icon)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
         with(NotificationManagerCompat.from(applicationContext)) {

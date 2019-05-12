@@ -1,5 +1,6 @@
 package com.healthapp.datasender
 
+
 import androidx.work.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -8,7 +9,16 @@ import java.util.concurrent.TimeUnit
 
 object HealthAppDataSender {
 
-    private const val BASE_URL = ""
+    /**
+     * Url бэкенда.
+     * После изменения этого свойства старые задачи будут отменены, и запланированы новые,
+     * с новым адресом сервера.
+     */
+    var BASE_URL = "https://healthapp.space"
+        set(value) {
+            field = value
+            reschedule()
+        }
 
     /**
      * Время в минутах в течении которого будет производится отправка данных на сервер
@@ -19,7 +29,7 @@ object HealthAppDataSender {
      */
     var WORK_DELAY_MINUTES: Long = 15
         set(value) {
-            field = Math.max(15,value)
+            field = Math.max(15, value)
             reschedule()
         }
 
