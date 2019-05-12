@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">datasender</string>
     <string name="auth_chanel_description">Show user notification then need authentication for data send</string>
     <string name="auth_notification_title">Authorization required</string>
     <string name="auth_notification_content">Please log in so the application can process your data.</string>

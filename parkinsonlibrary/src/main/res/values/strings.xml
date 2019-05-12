@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">ParkinsonLibrary</string>
     <string name="no_sensor_detected_for_rotation_detection">Cannot find rotation sensors</string>
+    <string name="rotation_detector_sensor_notification_title">Monitoring</string>
+    <string name="rotation_detector_sensor_notification_text">Location and rotation motoring</string>
 </resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_chanel_description">Уведомление о необходимости авторизоваться для обработи данных</string>
+    <string name="auth_notification_title">Необходима авторизация</string>
+    <string name="auth_notification_content">Пожалуйста авторизуйтесь чтобы приложение могло обработать данные</string>
+</resources>

@@ -56,8 +56,8 @@ class RotationDetectorService : CoordinationCallback, Service() {
             notificationManager.createMainNotificationChannel()
             val notification = NotificationCompat.Builder(this, notificationManager.getMainNotificationId())
                     .setSmallIcon(R.drawable.ic_heart_border)
-                    .setContentTitle("Rotation ")
-                    .setContentText("Monitoring rotation is working")
+                    .setContentTitle(getString(R.string.rotation_detector_sensor_notification_title))
+                    .setContentText(getString(R.string.rotation_detector_sensor_notification_text))
                     .setGroup("Rotation group")
                     .build()
             startForeground(1224, notification)
@@ -85,6 +85,8 @@ class RotationDetectorService : CoordinationCallback, Service() {
         sendBroadcast(broadcastIntent)
     }
 }
+
+fun RotationDetectorService.getString(id:Int) = resources.getString(id)
 
 
 class NotificationManager(private val context: Context) {
