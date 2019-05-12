@@ -1,6 +1,5 @@
 package ru.etu.parkinsonlibrary.rotation
 
-import android.R
 import android.app.NotificationChannel
 import android.app.Service
 import android.content.Context
@@ -9,6 +8,7 @@ import android.os.Build
 import android.os.IBinder
 import android.support.annotation.RequiresApi
 import android.support.v4.app.NotificationCompat
+import ru.etu.parkinsonlibrary.R
 import ru.etu.parkinsonlibrary.coordinate.LocationProvider
 import ru.etu.parkinsonlibrary.database.consumer.DatabaseRotationConsumer
 import ru.etu.parkinsonlibrary.di.DependencyProducer
@@ -55,9 +55,10 @@ class RotationDetectorService : CoordinationCallback, Service() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notificationManager.createMainNotificationChannel()
             val notification = NotificationCompat.Builder(this, notificationManager.getMainNotificationId())
-                    .setSmallIcon(R.color.white)
+                    .setSmallIcon(R.drawable.ic_heart_border)
                     .setContentTitle("Rotation ")
                     .setContentText("Monitoring rotation is working")
+                    .setGroup("Rotation group")
                     .build()
             startForeground(1224, notification)
         }

@@ -25,7 +25,7 @@ import ru.etu.parkinsonlibrary.di.DependencyProducer
 const val CHUNK_SIZE = 2000
 const val ERROR_CODE_NOT_AUTHORIZED = 401
 const val ERROR_CODE_INTERNAL_SERVER_ERROR = 500
-const val AUTH_NOTIFICATION_ID = 1
+const val AUTH_NOTIFICATION_ID = 115
 const val CHANNEL_NAME = "Authentication"
 
 
@@ -78,6 +78,7 @@ class SendDataWorker(appContext: Context, params: WorkerParameters) :
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setSmallIcon(R.drawable.send_data_auth_notification_icon)
                 .setContentIntent(pendingIntent)
+                .setGroup(CHANNEL_NAME)
                 .setAutoCancel(true)
         with(NotificationManagerCompat.from(applicationContext)) {
             // notificationId is a unique int for each notification that you must define
