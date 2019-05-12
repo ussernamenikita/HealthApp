@@ -10,10 +10,6 @@ import android.widget.SeekBar
 import android.widget.Switch
 import android.widget.TextView
 import com.bulygin.nikita.healthapp.R
-import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import ru.etu.parkinsonlibrary.database.DatabaseHelper
 import ru.etu.parkinsonlibrary.database.consumer.DatabaseMissClickConsumer
 import ru.etu.parkinsonlibrary.di.DependencyProducer
 import ru.etu.parkinsonlibrary.missclick.CloseTouchEvent
@@ -33,10 +29,6 @@ class MissClickFragment : Fragment(), MissClickEventsConsumer, SeekBar.OnSeekBar
 
     private lateinit var rootView: View
 
-    private lateinit var uiScheduler: Scheduler
-
-    private lateinit var databaseHelper: DatabaseHelper
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.inject()
@@ -49,15 +41,12 @@ class MissClickFragment : Fragment(), MissClickEventsConsumer, SeekBar.OnSeekBar
         val a = activity as MainActivity
         module = DependencyProducer(a.application)
         missClickConsumer = module.createDatabaseMissclickConsumer()
-        uiScheduler = AndroidSchedulers.mainThread()
-        databaseHelper = module.getDatabaseHelper()
     }
 
     private lateinit var trackingViewGroup: TrackingViewGroup
 
     private lateinit var maxDistanceTv: TextView
 
-    private var outputDisposable: Disposable? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.rootView = inflater.inflate(R.layout.miss_click_fragment_layout, container, false)
@@ -92,11 +81,6 @@ class MissClickFragment : Fragment(), MissClickEventsConsumer, SeekBar.OnSeekBar
         }
         seekBar.setOnSeekBarChangeListener(this)
         updateMissClickCount(0)
-        btn.setOnClickListener {
-            if (outputDisposable == null || outputDisposable!!.isDisposed) {
-                outputDisposable = databaseHelper.getMissClicksAsCsv(false).observeOn(uiScheduler).subscribe({ res -> println(res) }, { t -> t.printStackTrace() })
-            }
-        }
         return rootView
     }
 

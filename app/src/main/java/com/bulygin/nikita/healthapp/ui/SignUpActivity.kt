@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
+import com.bulygin.nikita.healthapp.R
 import com.google.firebase.auth.FirebaseUser
 import com.healthapp.datasender.HealthAppDataSender
 import com.healthapp.firebaseauth.AuthFragment

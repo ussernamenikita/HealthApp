@@ -2,8 +2,6 @@ package com.bulygin.nikita.healthapp.di
 
 import com.bulygin.nikita.healthapp.R
 import com.bulygin.nikita.healthapp.ui.*
-import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
 
 class AppModule(private val activity: MainActivity) {
 
@@ -16,8 +14,6 @@ class AppModule(private val activity: MainActivity) {
                         activity.getString(R.string.rotation_detector_title)))
     }
 
-
-    fun getUIScheduler(): Scheduler = AndroidSchedulers.mainThread()
 
 
 }
