@@ -16,6 +16,7 @@ class SignUpActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        HealthAppDataSender.schedule()
         if (savedInstanceState == null) {
             val currentUser = FirebaseAuth.getCurrentUser()
             if (currentUser == null) {
