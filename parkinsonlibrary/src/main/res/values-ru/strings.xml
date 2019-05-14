@@ -3,6 +3,6 @@
         <string name="no_sensor_detected_for_rotation_detection">Нет сенсоров для отслеживания вращения</string>
         <string name="rotation_detector_sensor_notification_title">Мониторинг</string>
         <string name="rotation_detector_sensor_notification_text">Активен мониторинг перемещения и вращения</string>
-
+    <string name="disable_monitoring_action">Отключить</string>
     <string name="channel_description">Мониторинг перемещения и вращения</string>
 </resources>

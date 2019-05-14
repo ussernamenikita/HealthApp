@@ -29,7 +29,7 @@ class DatabaseRotationConsumer(dao: OrientationDao) :
         this.currentOrientation = listOf(data.azimut.toInt(), data.pitch.toInt(), data.roll.toInt())
         val location = currentLocation.get()
         if (isEquals(currentOrientation, lastOrientation) || isEquals(lastSavedLocation, location)) {
-            onNewItem(OrientationEntity(null, System.currentTimeMillis(),
+            onNewItem(OrientationEntity(null, System.currentTimeMillis()/1000,
                     azimut = data.azimut.toInt(),
                     pitch = data.pitch.toInt(),
                     roll = data.roll.toInt(),

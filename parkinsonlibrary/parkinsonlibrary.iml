@@ -28,7 +28,7 @@
         <compilerSettings />
         <compilerArguments>
           <option name="destination" value="$MODULE_DIR$/build/tmp/kotlin-classes/debug" />
-          <option name="classpath" value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-android-extensions-runtime/1.3.31/721b62ccbafe51a284ca0d1c5dcfdce8cedd4255/kotlin-android-extensions-runtime-1.3.31.jar:/home/nikita/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.3.31/e652770b6416c6d85934086899ffed3eccd35813/kotlin-stdlib-jdk7-1.3.31.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/e79f995ceb47c960995f3960c57bced3/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/c9ba5aedb2cb56451fbd66debd8a3fd4/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/play-services-location-16.0.0.aar/9d84ccca0ecfebbfac85253b03907f78/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/support-v4-28.0.0.aar/4c50d519bc6aae37ee7bc388f39681cf/jars/classes.jar:/home/nikita/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.3.31/11289d20fd95ae219333f3456072be9f081c30cc/kotlin-stdlib-1.3.31.jar:/home/nikita/.gradle/caches/modules-2/files-2.1/android.arch.persistence.room/common/1.1.1/8094cc50760b9ac665a8ea76b51888f70042e2b5/common-1.1.1.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/db-framework-1.1.1.aar/80282feb5419199fa4954abdb3bf5c6e/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/db-1.1.1.aar/dbbce9d3ae08e34ce2e37680ea396f52/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/5b8aaec5c386d52c1d04825b5c8ae949/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-28.0.0.aar/5c119bc8c0a06433eef1f0fffdabdf36/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/support-core-ui-28.0.0.aar/e0362af4119204c9196b034ae684d1bc/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/support-core-utils-28.0.0.aar/f58c80060a17f75041bc550babf89d30/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/loader-28.0.0.aar/b6fd58fa24dafb0a6b746e49b9c006f3/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/36410b2278689209b45f43775872b98a/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/952bcc7cd228506b37dbfa49b35020bb/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/77e9d3cb2f1eb88f07a0d940c5e0653d/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-28.0.0.aar/8ded5fd0445315fdd4d409294e4f8f29/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/2a669a9a4a08679fd0078e9913dd8ff0/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/viewpager-28.0.0.aar/8c9bf67b7903b1da63f55a7deba0a64d/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0.aar/b67da3605e0346f3cc20453e18ad551d/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/drawerlayout-28.0.0.aar/628f2b903823ef9c5d6d47cc5095ffbb/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/750636928039be7fedb520d6f9691892/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/customview-28.0.0.aar/d2044994a6723dcc3a6a47cd92f7045c/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-28.0.0.aar/49fb5ad8804aafe3f45b43527fdcd3c2/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-28.0.0.aar/433fb114a36cf50d21b67e6f90c37148/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/c4b3aeadecad68c3a838b98ce540212b/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/49e000faca0f56e21d8661a463a1bfc5/jars/classes.jar:/home/nikita/.gradle/caches/modules-2/files-2.1/com.android.support/collections/28.0.0/c1bcdade4d3cc2836130424a3f3e4182c666a745/collections-28.0.0.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/6da8b5b6b62a2f47f14a39b8d7f863ed/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/3b011f4652beebd7f25efea148760c41/jars/classes.jar:/home/nikita/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.1.1/e55b70d1f5620db124b3e85a7f4bdc7bd48d9f95/common-1.1.1.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/documentfile-28.0.0.aar/37e39d76bca325e669e7097fadfac606/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-28.0.0.aar/3ed4cee809982081e063ec2cae3c7210/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/print-28.0.0.aar/9039a8adc8b53f419778415b9a1159f7/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/199a179e639fbc8214db58f6b2ee9d58/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/0c2ab90824ac61704b2b22aa94b3b88f/jars/classes.jar:/home/nikita/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.1.1/207a6efae6a3555e326de41f76bdadd9a239cbce/common-1.1.1.jar:/home/nikita/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/28.0.0/ed73f5337a002d1fd24339d5fb08c2c9d9ca60d8/support-annotations-28.0.0.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/59e8158027c2240802b9ba466625d3ba/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-16.0.0.aar/a558307261ee1ee41e00fe3dc16bab3b/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/play-services-tasks-16.0.1.aar/b2002e12bae7388b42134eec488537b9/jars/classes.jar:/home/nikita/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/ef008db08c3bb67ef75d25be3f62f9d5/jars/classes.jar:/home/nikita/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.3.31/20c34a04ea25cb1ef0139598bd67c764562cb170/kotlin-stdlib-common-1.3.31.jar:/home/nikita/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar:/home/nikita/StudioProjects/HealthApp/parkinsonlibrary/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/generateDebugRFile/R.jar:/home/nikita/Android/Sdk/platforms/android-28/android.jar" />
+          <option name="classpath" value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-android-extensions-runtime/1.3.31/721b62ccbafe51a284ca0d1c5dcfdce8cedd4255/kotlin-android-extensions-runtime-1.3.31.jar:/home/bns/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.3.31/e652770b6416c6d85934086899ffed3eccd35813/kotlin-stdlib-jdk7-1.3.31.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/work-runtime-1.0.1.aar/8519c3dc147503a3fcf93d5d3ab11d63/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/688e1614e487dc0e883aa2e44e46b348/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/3a0f7541ddfe0f940c20b2b22d8edacf/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/play-services-location-16.0.0.aar/ebdf6f13dac91920914c81f82a8b25f7/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/support-v4-28.0.0.aar/896e33946f583307746bdaad66995169/jars/classes.jar:/home/bns/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.3.31/11289d20fd95ae219333f3456072be9f081c30cc/kotlin-stdlib-1.3.31.jar:/home/bns/.gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/1.0/c949a840a6acbc5268d088e47b04177bf90b3cad/listenablefuture-1.0.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/extensions-1.1.0.aar/d328d1f0679f0bfa048cc69a8bd0908c/jars/classes.jar:/home/bns/.gradle/caches/modules-2/files-2.1/android.arch.persistence.room/common/1.1.1/8094cc50760b9ac665a8ea76b51888f70042e2b5/common-1.1.1.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/db-framework-1.1.1.aar/ee54ac402ca934e6d2969e2e4925af72/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/db-1.1.1.aar/ad488d601f96dbd9f2f4a5b33971bc47/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/dd23282b3b5d624a19ba8e145f56e86b/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-28.0.0.aar/605e2503885a378d1d4a9ba9dede49a6/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/support-core-ui-28.0.0.aar/4c92229e3970e8125505c74055714171/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/support-core-utils-28.0.0.aar/efc75dcd2662dfe7dacee3b1fbff3354/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/loader-28.0.0.aar/96ab504b7ea291372ff675b7f8982f40/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/c7ce0c4fc0e510a67dcee3e973cd37b8/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/45f4b92c5c4f7f3f8896c193cd89c7e1/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/569ce927c4484ca2d8af50456f6f5b1f/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-28.0.0.aar/88f636f949f95ed9fd96661ac72be3ca/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/f0bab710c92ad02e91832d2c3c9b14f7/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/viewpager-28.0.0.aar/84603d1fe38b9c5c5e7f699c80005831/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0.aar/520d18522456fc005d4b69b4e377bffb/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/drawerlayout-28.0.0.aar/6324bedefa6c212eb7ddb63ca77b811c/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/00c9bd21c9666fbc4bcc1ab27a887e52/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/customview-28.0.0.aar/24bc75f19af99afabbe66140d6393306/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-28.0.0.aar/6ba9ef5a34c023c4e65d7a95c03ffbf3/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-28.0.0.aar/5c15af74a86fc49389a428d2528bd8d9/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/6f795cd3066867c0f8ce7bcbcc5b0b65/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/c72b023594aed1f7bd2004aa946e8e61/jars/classes.jar:/home/bns/.gradle/caches/modules-2/files-2.1/com.android.support/collections/28.0.0/c1bcdade4d3cc2836130424a3f3e4182c666a745/collections-28.0.0.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/6875aa23059edfa4a262c49fe391d926/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/2a3575f22b03446558d1b10059cbd9fc/jars/classes.jar:/home/bns/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.1.1/e55b70d1f5620db124b3e85a7f4bdc7bd48d9f95/common-1.1.1.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/documentfile-28.0.0.aar/c2acbbd0c8ac37254faa5d54e61a0317/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-28.0.0.aar/30ac82d6c7944b1076a7365e7d3b0a29/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/print-28.0.0.aar/7ff80e9af8ab54a13669d5f82b36aacb/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/d3feefc980b866a522df9dbc1d655aba/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/d97a1b76ee2f02f114dfe905f0a7a933/jars/classes.jar:/home/bns/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.1.1/207a6efae6a3555e326de41f76bdadd9a239cbce/common-1.1.1.jar:/home/bns/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/28.0.0/ed73f5337a002d1fd24339d5fb08c2c9d9ca60d8/support-annotations-28.0.0.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/b93b5ee52e6a706cc3090e27d9e90ed5/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-16.0.0.aar/ce6352e5abfe69bd276152642acc8a21/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/play-services-tasks-16.0.1.aar/c70bddd2df74325b84b2c36e5853678e/jars/classes.jar:/home/bns/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/725e47d6d57e19beeb6c7d2a9d49f0ce/jars/classes.jar:/home/bns/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.3.31/20c34a04ea25cb1ef0139598bd67c764562cb170/kotlin-stdlib-common-1.3.31.jar:/home/bns/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar:/home/bns/StudioProjects/HealthApp/parkinsonlibrary/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/generateDebugRFile/R.jar:/home/bns/Android/Sdk/platforms/android-28/android.jar" />
           <option name="noStdlib" value="true" />
           <option name="noReflect" value="true" />
           <option name="moduleName" value="parkinsonlibrary_debug" />
@@ -84,13 +84,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/debug/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/rs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/shaders" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/rs" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/shaders" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/testDebug/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/testDebug/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/testDebug/assets" type="java-test-resource" />
@@ -98,6 +91,13 @@
       <sourceFolder url="file://$MODULE_DIR$/src/testDebug/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/testDebug/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/testDebug/shaders" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/shaders" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/assets" type="java-resource" />
@@ -105,13 +105,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/rs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/shaders" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/shaders" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/assets" type="java-test-resource" />
@@ -119,25 +112,27 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/shaders" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/shaders" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/build/generated/not_namespaced_r_class_sources" />
       <excludeFolder url="file://$MODULE_DIR$/build/generated/source/r" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/aapt_friendly_merged_manifests" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/annotation_processor_list" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/annotations_typedef_file" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/annotations_zip" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/blame" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/check_manifest_result" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/compile_only_not_namespaced_r_class_jar" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/consumer_proguard_file" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/intermediate-jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javac" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/library_and_local_jars_jni" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/library_assets" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/library_manifest" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/lint_jar" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/merged_manifests" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/packaged-classes" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/packaged_res" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/public_res" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
@@ -152,50 +147,53 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 28 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.3.31@jar" level="project" />
+    <orderEntry type="library" name="Gradle: android.arch.work:work-runtime:1.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-fragment:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:localbroadcastmanager:28.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:documentfile:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:animated-vector-drawable:28.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:slidingpanelayout:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:viewmodel:1.1.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:appcompat-v7:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:loader:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.core:runtime:1.1.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:livedata-core:1.1.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:collections:28.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:cursoradapter:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:runtime:1.1.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-compat:28.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: android.arch.lifecycle:extensions:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-location:16.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.3.31@jar" level="project" />
+    <orderEntry type="library" name="Gradle: android.arch.persistence:db-framework:1.1.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.android.support:support-vector-drawable:28.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.android.support:support-core-utils:28.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-places-placereport:16.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.android.support:support-annotations:28.0.0@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.android.support:interpolator:28.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: android.arch.persistence.room:runtime:1.1.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: android.arch.lifecycle:livedata:1.1.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.guava:listenablefuture:1.0@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.android.support:drawerlayout:28.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.3.31@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.android.support:support-v4:28.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.3.31@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.android.support:documentfile:28.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.android.support:slidingpanelayout:28.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.android.support:appcompat-v7:28.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.android.support:collections:28.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-core-ui:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.persistence:db:1.1.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:asynclayoutinflater:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:print:28.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0@jar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-location:16.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.core:common:1.1.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:versionedparcelable:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-base:16.0.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.3.31@jar" level="project" />
-    <orderEntry type="library" name="Gradle: android.arch.persistence:db-framework:1.1.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.31@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:viewpager:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.persistence.room:common:1.1.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-basement:16.0.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:support-core-utils:28.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:support-vector-drawable:28.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-places-placereport:16.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:support-annotations:28.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:common:1.1.1@jar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:interpolator:28.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: android.arch.persistence.room:runtime:1.1.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: android.arch.lifecycle:livedata:1.1.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:drawerlayout:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:coordinatorlayout:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:customview:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:swiperefreshlayout:28.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.3.31@jar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:support-v4:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-media-compat:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-tasks:16.0.1@aar" level="project" />
   </component>

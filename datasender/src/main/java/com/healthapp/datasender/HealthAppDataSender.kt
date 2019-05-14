@@ -1,6 +1,7 @@
 package com.healthapp.datasender
 
 
+import android.content.Context
 import androidx.work.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -60,13 +61,17 @@ object HealthAppDataSender {
 
     }
 
+    fun setUserId(context: Context, userID: String?) {
+        context.applicationContext.getSharedPreferences(SendDataWorker.USER_ID, Context.MODE_PRIVATE).edit().putString(SendDataWorker.USER_ID, userID).apply()
+    }
+
 
     private fun createConstraints() = Constraints.Builder()
             .setRequiredNetworkType(NetworkType.CONNECTED)  // if connected to internet
             .build()
 
     private fun createWorkRequest() = PeriodicWorkRequest
-            .Builder(SendDataWorker::class.java, WORK_DELAY_MINUTES, TimeUnit.MINUTES,5,TimeUnit.MINUTES)
+            .Builder(SendDataWorker::class.java, WORK_DELAY_MINUTES, TimeUnit.MINUTES, 5, TimeUnit.MINUTES)
             .setConstraints(createConstraints())
             // setting a backoff on case the work needs to retry
             .setBackoffCriteria(BackoffPolicy.LINEAR, PeriodicWorkRequest.MIN_BACKOFF_MILLIS, TimeUnit.MILLISECONDS)

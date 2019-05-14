@@ -1,5 +1,6 @@
 package com.bulygin.nikita.healthapp.ui
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +8,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
+import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
@@ -19,9 +22,7 @@ import ru.etu.parkinsonlibrary.rotation.RotationDetectorService
 class RotationDetectingFragment : Fragment(), RotationCallback {
 
     override fun onGranted() {
-        val intent = Intent(activity, RotationDetectorService::class.java)
-        intent.putExtra(RotationDetectorService.LOCATION_PERMISSIONS_KEY, true)
-        activity?.startService(intent)
+        activity.let { producer.startMonitoringServiceIntent(it as Activity) }
     }
 
     override fun onDenied() {
@@ -34,11 +35,13 @@ class RotationDetectingFragment : Fragment(), RotationCallback {
     lateinit var mContext: Context
     lateinit var locationPermissionRequire: LocationPermissionRequer
 
+    private lateinit var producer: DependencyProducer
+
     fun inject() {
         mContext = context!!
         val activity = (activity as MainActivity)
         activity.startService(Intent(activity, RotationDetectorService::class.java))
-        val producer = DependencyProducer(activity.application)
+        this.producer = DependencyProducer(activity.application)
         locationPermissionRequire = producer.getLocationPermissionRequer(this, this)
         locationPermissionRequire.requestPermissions()
     }
@@ -54,6 +57,12 @@ class RotationDetectingFragment : Fragment(), RotationCallback {
         xValueTv = rootView.findViewById(R.id.rotation_detecting_x_tv)
         yValueTv = rootView.findViewById(R.id.rotation_detecting_y_tv)
         zValueTv = rootView.findViewById(R.id.rotation_detecting_z)
+        rootView.findViewById<Switch>(R.id.switch1).setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, checked ->
+            context?.let {
+                RotationDetectorService.saveNotificationEnabled(checked, it)
+                producer.startMonitoringServiceIntent(it.applicationContext)
+            }
+        })
         updateValues(0.0, 0.0, 0.0)
         return rootView
     }

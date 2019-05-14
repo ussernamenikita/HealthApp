@@ -1,19 +1,10 @@
 package com.healthapp.datasender
 
 import android.app.Application
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
-import android.os.Build
-import android.support.v4.app.NotificationCompat
-import android.support.v4.app.NotificationManagerCompat
 import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.google.android.gms.tasks.Tasks
-import com.healthapp.firebaseauth.FirebaseAuth
 import retrofit2.Response
 import ru.etu.parkinsonlibrary.database.BaseDao
 import ru.etu.parkinsonlibrary.database.MissClickEntity
@@ -25,8 +16,6 @@ import ru.etu.parkinsonlibrary.di.DependencyProducer
 const val CHUNK_SIZE = 2000
 const val ERROR_CODE_NOT_AUTHORIZED = 401
 const val ERROR_CODE_INTERNAL_SERVER_ERROR = 500
-const val AUTH_NOTIFICATION_ID = 115
-const val CHANNEL_NAME = "Authentication"
 
 
 class SendDataWorker(appContext: Context, params: WorkerParameters) :
@@ -34,23 +23,23 @@ class SendDataWorker(appContext: Context, params: WorkerParameters) :
 
     companion object {
         const val LOG_TAG = "SendDataWorker"
+        const val USER_ID = "DATA_SENDER_USER_ID"
     }
 
     private val service = HealthAppDataSender.getApiService()
 
-    private lateinit var authToken: String
+    private lateinit var userID: String
 
     override fun doWork(): Result {
         Log.d(LOG_TAG, "Try send data to server")
         try {
-            this.authToken = getToken()
+            this.userID = getUserId()
             val producer = DependencyProducer(applicationContext as Application)
             val db = producer.getDatabase()
             sendAll(db.missClickDao(), this::sendMissClickToServer)
             sendAll(db.typingErrorDao(), this::sendTyingErrorEntity)
             sendAll(db.getOrientatoinDao(), this::sendOrientationToServer)
         } catch (authException: UnauthorizedException) {
-            showNotificationAboutAuthentication()
             Log.d(LOG_TAG, "Send data to server failed with $authException")
             return Result.failure()
         } catch (serverError: ServerError) {
@@ -65,57 +54,13 @@ class SendDataWorker(appContext: Context, params: WorkerParameters) :
         return Result.success()
     }
 
-    private fun showNotificationAboutAuthentication() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            createChannel()
+    private fun getUserId(): String {
+        val id = applicationContext.getSharedPreferences(USER_ID, Context.MODE_PRIVATE).getString(USER_ID, null)
+        if (id == null) {
+            Log.d(LOG_TAG, "User id is null, can't send data to backend")
+            throw UnauthorizedException("User id is null")
         }
-        val intent = Intent(applicationContext, DataSenderAuthActivity::class.java)
-        val pendingIntent: PendingIntent = PendingIntent.getActivity(applicationContext, 0, intent, 0)
-
-        val builder = NotificationCompat.Builder(applicationContext, CHANNEL_NAME)
-                .setContentTitle(getString(R.string.auth_notification_title))
-                .setContentText(getString(R.string.auth_notification_content))
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setSmallIcon(R.drawable.send_data_auth_notification_icon)
-                .setContentIntent(pendingIntent)
-                .setGroup(CHANNEL_NAME)
-                .setAutoCancel(true)
-        with(NotificationManagerCompat.from(applicationContext)) {
-            // notificationId is a unique int for each notification that you must define
-            notify(AUTH_NOTIFICATION_ID, builder.build())
-        }
-    }
-
-    private fun createChannel() {
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = CHANNEL_NAME
-            val descriptionText = getString(R.string.auth_chanel_description)
-            val importance = android.app.NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(CHANNEL_NAME, name, importance).apply {
-                description = descriptionText
-            }
-            // Register the channel with the system
-            val notificationManager: android.app.NotificationManager =
-                    applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-        }
-    }
-
-    private fun getToken(): String {
-        val user = FirebaseAuth.getCurrentUser()
-        if (user == null) {
-            throw UnauthorizedException("Current user is null, user must authorize first")
-        } else {
-            val result = Tasks.await(user.getIdToken(true))
-            val token = result.token
-            if (token == null) {
-                throw UnauthorizedException("Can not get token for current user")
-            } else {
-                return token
-            }
-        }
+        return id
     }
 
 
@@ -139,14 +84,14 @@ class SendDataWorker(appContext: Context, params: WorkerParameters) :
 
 
     private fun sendMissClickToServer(missClicks: List<MissClickEntity>): Response<Void> =
-            service.sendMissclickData(authToken, missClicks).execute()
+            service.sendMissclickData(userID, missClicks).execute()
 
     private fun sendOrientationToServer(data: List<OrientationEntity>): Response<Void> =
-            service.sendOrientationData(authToken, data).execute()
+            service.sendOrientationData(userID, data).execute()
 
 
     private fun sendTyingErrorEntity(data: List<TypingErrorEntity>): Response<Void> =
-            service.sendTextTypingErrorsData(authToken, data).execute()
+            service.sendTextTypingErrorsData(userID, data).execute()
 
 }
 
