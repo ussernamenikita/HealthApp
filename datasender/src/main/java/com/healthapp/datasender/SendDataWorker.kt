@@ -73,6 +73,7 @@ class SendDataWorker(appContext: Context, params: WorkerParameters) :
             }
             val response = sendFunction(chunk)
             if (response.isSuccessful) {
+                Log.d(LOG_TAG,"Successfully send ${chunk.size} items to database")
                 dao.delete(chunk)
             } else {
                 when (response.code()) {

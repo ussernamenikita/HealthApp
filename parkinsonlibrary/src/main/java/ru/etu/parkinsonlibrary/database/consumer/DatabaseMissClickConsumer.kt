@@ -14,7 +14,7 @@ class DatabaseMissClickConsumer(missClickDao: MissClickDao) : MissClickEventsCon
             System.currentTimeMillis()
             this.onNewItem(MissClickEntity(null, event.timestamp/1000, event.distanceFromCenter, true))
         }
-        this.onNewItem(MissClickEntity(null, timestamp, clickDistanceFromCenter, false))
+        this.onNewItem(MissClickEntity(null, timestamp/1000, clickDistanceFromCenter, false))
     }
 
 }

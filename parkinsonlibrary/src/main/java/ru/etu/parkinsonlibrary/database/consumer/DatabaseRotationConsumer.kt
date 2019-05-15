@@ -28,7 +28,7 @@ class DatabaseRotationConsumer(dao: OrientationDao) :
     fun onNewAngels(data: RotationDetector.Rotation) {
         this.currentOrientation = listOf(data.azimut.toInt(), data.pitch.toInt(), data.roll.toInt())
         val location = currentLocation.get()
-        if (isEquals(currentOrientation, lastOrientation) || isEquals(lastSavedLocation, location)) {
+        if (!isEquals(currentOrientation, lastOrientation) || !isEquals(lastSavedLocation, location)) {
             onNewItem(OrientationEntity(null, System.currentTimeMillis()/1000,
                     azimut = data.azimut.toInt(),
                     pitch = data.pitch.toInt(),
