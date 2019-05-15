@@ -68,6 +68,9 @@ class SendDataWorker(appContext: Context, params: WorkerParameters) :
         var chunk: List<T>
         do {
             chunk = dao.get(CHUNK_SIZE)
+            if(chunk.isEmpty()){
+                return true
+            }
             val response = sendFunction(chunk)
             if (response.isSuccessful) {
                 dao.delete(chunk)

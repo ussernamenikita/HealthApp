@@ -71,7 +71,7 @@ object HealthAppDataSender {
             .build()
 
     private fun createWorkRequest() = PeriodicWorkRequest
-            .Builder(SendDataWorker::class.java, WORK_DELAY_MINUTES, TimeUnit.MINUTES, 5, TimeUnit.MINUTES)
+            .Builder(SendDataWorker::class.java, WORK_DELAY_MINUTES, TimeUnit.MINUTES)
             .setConstraints(createConstraints())
             // setting a backoff on case the work needs to retry
             .setBackoffCriteria(BackoffPolicy.LINEAR, PeriodicWorkRequest.MIN_BACKOFF_MILLIS, TimeUnit.MILLISECONDS)

@@ -54,7 +54,7 @@ class RotationDetectorService : CoordinationCallback, Service() {
             return context
                     .applicationContext
                     .getSharedPreferences(NOTIFICATION_ENABLED, Context.MODE_PRIVATE)
-                    .getBoolean(NOTIFICATION_ENABLED, false)
+                    .getBoolean(NOTIFICATION_ENABLED, true)
 
         }
     }
