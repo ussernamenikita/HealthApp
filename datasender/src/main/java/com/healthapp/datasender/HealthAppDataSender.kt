@@ -15,7 +15,7 @@ object HealthAppDataSender {
      * После изменения этого свойства старые задачи будут отменены, и запланированы новые,
      * с новым адресом сервера.
      */
-    var BASE_URL = "https://healthapp.space"
+    var BASE_URL = "https://healthapp.space:443"
         set(value) {
             field = value
             reschedule()
