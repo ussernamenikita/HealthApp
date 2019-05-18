@@ -12,9 +12,9 @@ class DatabaseMissClickConsumer(missClickDao: MissClickDao) : MissClickEventsCon
     override fun onConsume(timestamp: Long, clickDistanceFromCenter: Double, closeEvents: ArrayList<CloseTouchEvent>) {
         for (event in closeEvents) {
             System.currentTimeMillis()
-            this.onNewItem(MissClickEntity(null, event.timestamp/1000, event.distanceFromCenter, true))
+            this.onNewItem(MissClickEntity(null, event.timestamp, event.distanceFromCenter, true))
         }
-        this.onNewItem(MissClickEntity(null, timestamp/1000, clickDistanceFromCenter, false))
+        this.onNewItem(MissClickEntity(null, timestamp, clickDistanceFromCenter, false))
     }
 
 }
