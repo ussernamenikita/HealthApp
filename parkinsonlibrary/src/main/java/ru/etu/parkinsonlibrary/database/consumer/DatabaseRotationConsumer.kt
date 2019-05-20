@@ -1,6 +1,7 @@
 package ru.etu.parkinsonlibrary.database.consumer
 
 import android.location.Location
+import android.util.Log
 import ru.etu.parkinsonlibrary.coordinate.LocationConsumer
 import ru.etu.parkinsonlibrary.database.OrientationDao
 import ru.etu.parkinsonlibrary.database.OrientationEntity
@@ -13,6 +14,10 @@ import java.util.concurrent.atomic.AtomicReference
 class DatabaseRotationConsumer(dao: OrientationDao) :
         BaseConsumer<OrientationEntity>(dao), LocationConsumer {
 
+    companion object {
+        const val LOG_TAG = "RotationConsumer"
+    }
+
     private val currentLocation = AtomicReference<Location>()
 
     override fun onLocation(location: Location?) {
@@ -21,14 +26,14 @@ class DatabaseRotationConsumer(dao: OrientationDao) :
 
     private var currentOrientation: List<Int>? = null
 
-    private var lastOrientation: List<Int>? = null
+    private var lastSavedOrientation: List<Int>? = null
 
     private var lastSavedLocation: Location? = null
 
     fun onNewAngels(data: RotationDetector.Rotation) {
         this.currentOrientation = listOf(data.azimut.toInt(), data.pitch.toInt(), data.roll.toInt())
         val location = currentLocation.get()
-        if (!isEquals(currentOrientation, lastOrientation) || !isEquals(lastSavedLocation, location)) {
+        if (!isEquals(currentOrientation, lastSavedOrientation) || !isEquals(lastSavedLocation, location)) {
             onNewItem(OrientationEntity(null, System.currentTimeMillis(),
                     azimut = data.azimut.toInt(),
                     pitch = data.pitch.toInt(),
@@ -37,9 +42,11 @@ class DatabaseRotationConsumer(dao: OrientationDao) :
                     longitude = location?.longitude,
                     altitude = location?.altitude,
                     speed = location?.speed?.toDouble()))
+            this.lastSavedOrientation = currentOrientation
+            this.lastSavedLocation = location
+        }else{
+            Log.d(LOG_TAG,"Location and orientation are same. Nothing save to database")
         }
-        this.lastOrientation = currentOrientation
-        this.lastSavedLocation = currentLocation.get()
     }
 
     private fun isEquals(o1: Location?, o2: Location?): Boolean {

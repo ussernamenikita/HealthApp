@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.IBinder
 import android.support.annotation.RequiresApi
 import android.support.v4.app.NotificationCompat
+import android.util.Log
 import androidx.work.BackoffPolicy
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequest
@@ -29,6 +30,7 @@ import java.util.concurrent.TimeUnit
  */
 class RotationDetectorService : CoordinationCallback, Service() {
 
+
     override fun onNewAngles(rotation: RotationDetector.Rotation) {
         consumer.onNewAngels(rotation)
     }
@@ -40,6 +42,7 @@ class RotationDetectorService : CoordinationCallback, Service() {
 
         const val WORK_NAME_DEFAULT = "Rotation service startup worker"
         const val WORK_DELAY_MINUTES = 30L
+        const val LOG_TAG = "DetectorService"
 
         fun saveNotificationEnabled(enabled: Boolean, context: Context) {
             context

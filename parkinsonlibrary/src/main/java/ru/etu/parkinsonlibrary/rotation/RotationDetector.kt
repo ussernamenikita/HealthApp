@@ -25,16 +25,16 @@ class RotationDetector(private val context: Context,
         checkRotationSensor()
         unregister()
         this.sensorEventListener = object : SensorEventListener {
-            private var lastTimestamp = 0L
+            private var lastSavedTimestamp = 0L
 
             override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
 
             override fun onSensorChanged(event: SensorEvent?) {
                 val currentTime = System.currentTimeMillis()
-                if (event != null && currentTime - lastTimestamp >= debounceParam) {
+                if (event != null && currentTime - lastSavedTimestamp >= debounceParam) {
                     currentCallback?.onNewAngles(getDataFromSensors(event.values))
+                    lastSavedTimestamp = currentTime
                 }
-                lastTimestamp = currentTime
             }
         }
         sensorManager.registerListener(sensorEventListener, rotationSensor, 16000)

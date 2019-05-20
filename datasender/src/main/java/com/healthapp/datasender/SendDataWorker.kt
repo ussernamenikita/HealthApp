@@ -68,18 +68,21 @@ class SendDataWorker(appContext: Context, params: WorkerParameters) :
         var chunk: List<T>
         do {
             chunk = dao.get(CHUNK_SIZE)
-            if(chunk.isEmpty()){
+            if (chunk.isEmpty()) {
                 return true
             }
             val response = sendFunction(chunk)
             if (response.isSuccessful) {
-                Log.d(LOG_TAG,"Successfully send ${chunk.size} items to database")
+                Log.d(LOG_TAG, "Successfully send ${chunk.size} items to database")
                 dao.delete(chunk)
             } else {
                 when (response.code()) {
                     ERROR_CODE_NOT_AUTHORIZED -> throw  UnauthorizedException("Server return authorization error")
                     ERROR_CODE_INTERNAL_SERVER_ERROR -> throw ServerError("Internal server error")
-                    else -> return false
+                    else -> {
+                        Log.d(LOG_TAG, "Error while trying send data. Error code :${response.code()} \n errorBody: ${response.errorBody()}")
+                        return false
+                    }
                 }
             }
         } while (chunk.size >= CHUNK_SIZE)
